@@ -21,7 +21,7 @@ npm install @informatix8/gulp-saxon-xslt --save-dev
 ## Example
 ```javascript
 const gulp = require('gulp');
-const xslt = require('gulp-saxon-xslt');
+const xslt = require('@informatix8/gulp-saxon-xslt');
 
 gulp.task('xslt', function () {
     return gulp.src([
