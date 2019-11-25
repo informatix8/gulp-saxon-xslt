@@ -71,3 +71,4 @@ Icon
 .gitignore.rej
 .project
 package-lock.json
+*.jar
