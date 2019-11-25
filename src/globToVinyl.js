@@ -10,18 +10,18 @@ const vfs = require('vinyl-fs');
  */
 function globToVinyl(path, callback) {
 
-  const files = [];
-  const globber = vfs.src(path);
+    const files = [];
+    const globber = vfs.src(path);
 
-  globber.once('error', callback);
+    globber.once('error', callback);
 
-  globber.on('data', function (file) {
-    files.push(file); // Push one file at a time in the array
-  });
+    globber.on('data', function(file) {
+        files.push(file); // Push one file at a time in the array
+    });
 
-  globber.once('end', function () {
-    callback(null, files); // return the array when all files loaded.
-  });
+    globber.once('end', function() {
+        callback(null, files); // return the array when all files loaded.
+    });
 }
 
 module.exports = globToVinyl;
