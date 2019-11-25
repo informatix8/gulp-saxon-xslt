@@ -49,7 +49,7 @@ function transformer(optionParams) {
         const outputDir = tmpDir.path;
         const outputPath = outputDir + '/' + path.basename(file.path);
 
-        //logger.info('Output Directory ', outputPath);
+        logger.info('Output Directory ', outputPath);
 
         const saxonOptions = {
             timeout: options.timeout,
@@ -62,7 +62,7 @@ function transformer(optionParams) {
             xslPath: path.join(process.cwd(), '/', options.xsl),
         };
 
-        //logger.info('Saxon Options', saxonOptions);
+        logger.info('Saxon Options', saxonOptions);
 
         saxon(filePath, saxonOptions, function(saxonErr) {
             if (saxonErr) {
@@ -93,14 +93,14 @@ function transformer(optionParams) {
                     self.push(vFile);
                 });
 
-                //logger.info('Pushed output files to vinyl stream');
+                logger.info('Pushed output files to vinyl stream');
                 //files.forEach(function (file) {
                 //    logger.info(file.path);
                 //})
 
                 rimraf.sync(tmpDir.path);
 
-                //logger.info('Deleted the tmp output Path', tmpDir.path);
+                logger.info('Deleted the tmp output Path', tmpDir.path);
                 return next();
 
             });
