@@ -52,7 +52,6 @@ gulp.task('xslt', function () {
 ## Release
 
 ```shell
-npm run build
 git tag -a vX.Y.Z
 git push origin master
 git push origin --tags
