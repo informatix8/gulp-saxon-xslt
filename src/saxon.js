@@ -24,7 +24,7 @@ function saxon(inputFile, optionsParams, cb) {
   merge(options, optionsParams);
 
   const logger = loggerFn(options.debugMode);
-  logger.info('Saxon function init with options ', { inputFile, options });
+  //logger.info('Saxon function init with options ', { inputFile, options });
 
   let opts = [
     '-jar ' + options.jarPath,
@@ -39,10 +39,10 @@ function saxon(inputFile, optionsParams, cb) {
 
   opts = opts.concat(dataParamsArr);
 
-  logger.info('Data Params', dataParamsArr);
+  //logger.info('Data Params', dataParamsArr);
 
   const javaCommand = 'java ' + opts.join(' ');
-  logger.info('Java Command', javaCommand);
+  //logger.info('Java Command', javaCommand);
 
   const cmd = exec(javaCommand, { timeout: options.timeout }, function(err, stdout, stderr) {
     if(err) {
@@ -55,12 +55,12 @@ function saxon(inputFile, optionsParams, cb) {
       return cb(stderr);
     }
 
-    logger.info('Console Output', stdout);
+    //logger.info('Console Output', stdout);
 
   });
 
   cmd.on('exit', function(code) {
-    logger.info('Java `Command Exiting...');
+    //logger.info('Java `Command Exiting...');
     if(code === 0) { // Return this callback only if no Error
         return cb();
     }
