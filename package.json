@@ -1,6 +1,6 @@
 {
   "name": "@informatix8/gulp-saxon-xslt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp plugin for XML Transformation via Saxon",
   "main": "index.js",
   "scripts": {
