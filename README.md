@@ -37,9 +37,8 @@ gulp.task('xslt', function () {
             debugMode: false,
             abortOnError: true
         }, { buffer: false }))
-        .on('end', function handleEnd (err) {
-            console.log('Caught End');
-            console.error(err);
+        .on('end', function handleEnd () {
+            console.log('XSLT Ended');
         })
         .on('error', function handleError (err) {
             console.log('Caught Error');
