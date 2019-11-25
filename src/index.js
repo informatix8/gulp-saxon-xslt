@@ -65,11 +65,12 @@ function transformer(optionParams) {
     logger.info('Saxon Options', saxonOptions);
 
     saxon(filePath, saxonOptions, function(saxonErr) {
-      if(saxonErr) {
+      if (saxonErr) {
+        var error = new PluginError(PLUGIN_NAME, saxonErr);
         logger.error('Error with the Saxon process', saxonErr);
-        self.emit('error', new PluginError(PLUGIN_NAME, saxonErr));
-        if(options.abortOnError === true) {
-          self.emit('end');
+        self.emit('error', error);
+        if (options.abortOnError === true) {
+          self.emit('end', error);
           process.exit(1);
         }
 
@@ -77,13 +78,13 @@ function transformer(optionParams) {
       }
 
       globToVinyl(path.join(outputDir, '**/*.*'), function(err, files) {
-        if(err) {
+        if (err) {
+            var error = new PluginError(PLUGIN_NAME, err);
             logger.error('Error from Vinyl Stream Glob, ', err);
-            self.emit('error', new PluginError(PLUGIN_NAME, err));
-            if(options.abortOnError === true) {
-              self.emit('end');
+            self.emit('error', error);
+            if (options.abortOnError === true) {
+              self.emit('end', error);
               process.exit(1);
-
             }
             return next();
         }
