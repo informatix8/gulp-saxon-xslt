@@ -25,7 +25,7 @@ const DEBUG_MODE_FALSE = false;
 
 function transformer(optionParams) {
 
-    const options = {
+    var options = {
         abortOnError: true,
         debugMode: DEBUG_MODE_FALSE,
         params: {},
