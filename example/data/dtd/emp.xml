@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE empinfo PUBLIC "-//FOO//DTD LOREM IPSUM DTD//EN" "emp.dtd"[] >
+<empinfo>
+    <employee id="1">
+        <name>Opal Kole</name>
+        <designation>Senior Engineer</designation>
+        <email>email@myemail.com</email>
+    </employee>
+    <employee id="2">
+        <name from="CA">Opal Kole</name>
+        <designation discipline="DBA">Senior Engineer</designation>
+        <email>email@email.com</email>
+    </employee>
+</empinfo>

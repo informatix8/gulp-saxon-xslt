@@ -1,0 +1,10 @@
+<!ELEMENT tests (docid,testrun+,sentence) >
+<!ELEMENT testrun (test+) >
+<!ELEMENT sentence (#PCDATA) >
+<!ELEMENT docid (#PCDATA) >
+<!ELEMENT test EMPTY >
+
+<!ATTLIST test
+  name CDATA #REQUIRED
+  pass CDATA #REQUIRED
+>

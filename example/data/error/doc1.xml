@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TOPIC PUBLIC "-//FOO//DTD LOREM IPSUM DTD//EN" "lipsum.dtd"[]>
+
+<tests>
+    <docid>Doc1</docid>
+    <testrun run="test1">
+        <sentence>
+Sed non consectetur nibh. Fusce fermentum varius ex quis tempus. Duis sodales velit a ante pretium rhoncus. Donec ultrices mi elit, id dapibus ligula auctor eget. Curabitur rhoncus nec dui id cursus. Sed a cursus enim, at consequat ante. Etiam iaculis ornare velit eu mattis. In mattis accumsan dapibus. Aenean eu sapien ligula. Donec a nisl dolor. Nunc consectetur non velit et dignissim. Vestibulum tempus sapien eleifend erat iaculis, mollis ornare lectus blandit.
+        </sentence>
+        <test name="foo" pass="true" />
+        <test name="bar" pass="true" />
+        <test name="baz" pass="true" />
+    </testrun>
+    <testrun run="test2">
+        <sentence>
+ Proin dapibus auctor sapien, vitae malesuada mauris eleifend sit amet. Etiam condimentum sem eu venenatis placerat. Integer eget sem odio. Mauris blandit cursus ante, et efficitur justo imperdiet eget. Etiam a semper nunc. Aenean maximus lacus ut lacus aliquam facilisis. Mauris ut lectus mauris. Suspendisse urna massa, rutrum nec faucibus nec, lacinia quis justo. Duis nunc neque, viverra ultricies interdum ut, iaculis vitae eros. Nullam consectetur odio vel sapien volutpat eleifend. Donec libero lacus, dignissim commodo tortor sit amet, placerat imperdiet magna. Praesent auctor ac sem vitae tristique.
+        </sentence>
+        <test name="foo" pass="true" />
+        <test name="bar" pass="false" />
+        <test name="baz" pass="false" />
+    </testrun>
+    <testrun run="test3">
+        <sentence>
+ Integer volutpat leo ante, non commodo lacus lobortis sed. Sed a risus tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent volutpat, dui eu ultrices sagittis, massa odio pretium nisi, in vehicula arcu tortor at urna. Quisque cursus lorem quis erat viverra, sagittis mollis massa feugiat. Nulla facilisi. Morbi nec ipsum neque. In dapibus consequat velit id ultricies. Phasellus porta venenatis justo sit amet dignissim. Duis tincidunt justo tortor, in suscipit odio bibendum et.
+        </sentence>
+        <test name="foo" pass="false" />
+        <test name="bar" pass="true" />
+        <test name="baz" pass="false" />
+    </testrun>
+</tests>

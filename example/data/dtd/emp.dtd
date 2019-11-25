@@ -1,0 +1,13 @@
+<!ELEMENT empinfo (employee)>
+
+<!ELEMENT employee (name, designation, email)>
+<!ATTLIST employee id CDATA #REQUIRED>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name from CDATA #IMPLIED>
+
+<!ELEMENT designation (#PCDATA)>
+<!ATTLIST designation discipline CDATA #FIXED "Web developer">
+
+<!ELEMENT email (#PCDATA)>
+<!ATTLIST email domain CDATA "personal">

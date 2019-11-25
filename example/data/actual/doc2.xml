@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TOPIC PUBLIC "-//FOO//DTD LOREM IPSUM DTD//EN" "lipsum.dtd"[]>
+
+<tests>
+    <docid>Doc2</docid>
+    <testrun run="test1">
+        <sentence>
+Set optimization level. The value is an integer in the range 0 (no optimization) to 10 (full optimization); currently all values other than 0 result in full optimization but this is likely to change in future. The default is full optimization; this feature allows optimization to be suppressed in cases where reducing compile time is important, or where optimization gets in the way of debugging, or causes extension functions with side-effects to behave unpredictably. (Note however, that even with no optimization, lazy evaluation may still cause the evaluation order to be not as expected.)
+        </sentence>
+        <test name="foo" pass="true" />
+        <test name="bar" pass="true" />
+        <test name="baz" pass="true" />
+    </testrun>
+    <testrun run="test2">
+        <sentence>
+Use the specified URIResolver to process all URIs. The URIResolver is a user-defined class, that extends the net.sf.saxon.URIResolver class, whose function is to take a URI supplied as a string, and return a SAX InputSource. It is invoked to process URIs used in the document() function, in the xsl:include and xsl:import elements, and (if -u is also specified) to process the URIs of the source file and stylesheet file provided on the command line.
+        </sentence>
+        <test name="foo" pass="true" />
+        <test name="bar" pass="false" />
+        <test name="baz" pass="false" />
+    </testrun>
+    <testrun run="test3">
+        <sentence>
+Specifies what whitespace is to be stripped from source documents (applies both to the principal source document and to any documents loaded for example using the document() function. The default is ignorable: all ignorable whitespace is stripped. Whitespace text nodes are ignorable if they appear in elements defined in the DTD or schema as having element-only content. Specifying all strips all whitespace text nodes from source documents before any further processing, regardless of any xsl:strip-space declarations in the stylesheet, or any xml:space attributes in the source document. Specifying ignorable strips all ignorable whitespace text nodes from source documents before any further processing, regardless of any xsl:strip-space declarations in the stylesheet, or any xml:space attributes in the source document. Specifying none suppresses all whitespace stripping unless requested elsewhere, for example using xsl:strip-space.
+        </sentence>
+        <test name="foo" pass="false" />
+        <test name="bar" pass="true" />
+        <test name="baz" pass="false" />
+    </testrun>
+</tests>
