@@ -49,6 +49,17 @@ function transformer(optionParams) {
         const outputDir = tmpDir.path;
         const outputPath = outputDir + '/' + path.basename(file.path);
 
+        var jarPath = options.jar;
+        var xslPath = options.xsl;
+
+        if(!path.isAbsolute(jarPath)) {
+            jarPath = path.join(process.cwd(), '/', options.jar);
+        }
+
+        if(!path.isAbsolute(xslPath)) {
+             xslPath = path.join(process.cwd(), '/', options.xsl);
+        }
+
         logger.info('Output Directory ', outputPath);
 
         const saxonOptions = {
@@ -58,8 +69,8 @@ function transformer(optionParams) {
             basePath,
             outputPath,
             debugMode: options.debugMode,
-            jarPath: path.join(process.cwd(), '/', options.jar),
-            xslPath: path.join(process.cwd(), '/', options.xsl),
+            jarPath: jarPath,
+            xslPath: xslPath
         };
 
         logger.info('Saxon Options', saxonOptions);
