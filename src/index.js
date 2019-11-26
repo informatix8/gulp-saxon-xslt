@@ -13,7 +13,7 @@ const saxon = require('./saxon');
 const globToVinyl = require('./globToVinyl');
 const loggerFn = require('./utils/logger');
 
-const PLUGIN_NAME = 'gulp-future-xslt';
+const PLUGIN_NAME = 'gulp-saxon-xslt';
 const DEFAULT_TIMEOUT = 5000;
 const DEBUG_MODE_FALSE = false;
 
