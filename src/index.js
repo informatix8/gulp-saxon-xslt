@@ -14,7 +14,6 @@ const globToVinyl = require('./globToVinyl');
 const loggerFn = require('./utils/logger');
 
 const PLUGIN_NAME = 'gulp-saxon-xslt';
-const DEFAULT_TIMEOUT = 5000;
 const DEBUG_MODE_FALSE = false;
 
 /**
@@ -29,7 +28,7 @@ function transformer(optionParams) {
         abortOnError: true,
         debugMode: DEBUG_MODE_FALSE,
         params: {},
-        timeout: DEFAULT_TIMEOUT,
+        execOptions: {}
     };
 
     merge(options, optionParams);
@@ -63,7 +62,7 @@ function transformer(optionParams) {
         logger.info('Output Directory ', outputPath);
 
         const saxonOptions = {
-            timeout: options.timeout,
+            execOptions: options.execOptions,
             params: options.params,
             abortOnError: options.abortOnError,
             basePath,

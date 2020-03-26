@@ -16,7 +16,7 @@ const DEFAULT_TIMEOUT = 5000;
 function saxon(inputFile, optionsParams, cb) {
 
     let options = {
-        timeout: DEFAULT_TIMEOUT,
+        execOptions: { timeout: DEFAULT_TIMEOUT },
         params: {},
         basePath: '',
         outputPath: '',
@@ -45,8 +45,9 @@ function saxon(inputFile, optionsParams, cb) {
 
     const javaCommand = 'java ' + opts.join(' ');
     logger.info('Java Command', javaCommand);
+    logger.info('Options merged:', options.execOptions);
 
-    const cmd = exec(javaCommand, { timeout: options.timeout }, function(err, stdout, stderr) {
+    const cmd = exec(javaCommand, options.execOptions, function(err, stdout, stderr) {
         if (err) {
             logger.error('Unexpected Error running Java Command');
             return cb(err);
