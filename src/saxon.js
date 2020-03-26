@@ -4,6 +4,8 @@ const exec = require('child_process').exec;
 const merge = require('lodash.merge');
 const loggerFn = require('./utils/logger');
 
+const DEFAULT_TIMEOUT = 5000;
+
 /**
  * Saxon Utility to be run using Java
  *
@@ -14,7 +16,7 @@ const loggerFn = require('./utils/logger');
 function saxon(inputFile, optionsParams, cb) {
 
     let options = {
-        timeout: 5000,
+        timeout: DEFAULT_TIMEOUT,
         params: {},
         basePath: '',
         outputPath: '',
