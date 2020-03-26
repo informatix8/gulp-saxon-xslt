@@ -45,7 +45,6 @@ function saxon(inputFile, optionsParams, cb) {
 
     const javaCommand = 'java ' + opts.join(' ');
     logger.info('Java Command', javaCommand);
-    logger.info('Options merged:', options.execOptions);
 
     const cmd = exec(javaCommand, options.execOptions, function(err, stdout, stderr) {
         if (err) {
