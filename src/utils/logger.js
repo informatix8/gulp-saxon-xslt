@@ -1,6 +1,6 @@
 'use strict';
 
-const { Console } = require('console');
+import { Console } from 'console';
 
 /**
  * Simple function to get the current date time
@@ -18,8 +18,7 @@ function getCurrentDateTime() {
  * @param {Boolean} isDebug - Flag to either enable/disable the logging
  * @param {Object} classInstance - Object instance to help print the class name
  */
-const logger = function(isDebug) {
-
+const logger = function (isDebug) {
   const debug = {};
 
   const consoleLogger = new Console({ stdout: process.stdout, stderr: process.stderr });
@@ -33,13 +32,12 @@ const logger = function(isDebug) {
   } else {
     for (let m in console) {
       if (typeof console[m] === 'function') {
-        debug[m] = function() {};
+        debug[m] = function () {};
       }
     }
   }
 
   return debug;
-
 };
 
-module.exports = logger;
+export default logger;

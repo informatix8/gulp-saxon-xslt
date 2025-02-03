@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "Gulp plugin for XML Transformation via Saxon",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "example": "cd example && gulp",

@@ -1,17 +1,16 @@
 'use strict';
 
-const merge = require('lodash.merge');
-const path = require('path');
-const PluginError = require('plugin-error');
-const through2 = require('through2');
-const temporary = require('temporary');
-const rimraf = require('rimraf');
-
+import merge from 'lodash.merge';
+import path from 'path';
+import PluginError from 'plugin-error';
+import through2 from 'through2';
+import temporary from 'temporary';
+import { rimrafSync } from 'rimraf';
 
 // User defined
-const saxon = require('./saxon');
-const globToVinyl = require('./globToVinyl');
-const loggerFn = require('./utils/logger');
+import saxon from './saxon.js';
+import globToVinyl from './globToVinyl.js';
+import loggerFn from './utils/logger.js';
 
 const PLUGIN_NAME = 'gulp-saxon-xslt';
 const DEBUG_MODE_FALSE = false;
@@ -23,102 +22,98 @@ const DEBUG_MODE_FALSE = false;
  */
 
 function transformer(optionParams) {
+  var options = {
+    abortOnError: true,
+    debugMode: DEBUG_MODE_FALSE,
+    params: {},
+    execOptions: {}
+  };
 
-    var options = {
-        abortOnError: true,
-        debugMode: DEBUG_MODE_FALSE,
-        params: {},
-        execOptions: {}
-    };
+  merge(options, optionParams);
 
-    merge(options, optionParams);
+  const logger = loggerFn(options.debugMode);
 
-    const logger = loggerFn(options.debugMode);
+  const tmpDir = new temporary.Dir();
 
-    const tmpDir = new temporary.Dir();
+  function transform(file, e, next) {
+    const self = this;
 
-    function transform(file, e, next) {
+    logger.info('File Input Path ', file.path);
 
-        const self = this;
+    const filePath = file.path;
+    const basePath = file.dirname;
+    const outputDir = tmpDir.path;
+    const outputPath = outputDir + '/' + path.basename(file.path);
 
-        logger.info('File Input Path ', file.path);
+    var jarPath = options.jar;
+    var xslPath = options.xsl;
 
-        const filePath = file.path;
-        const basePath = file.dirname;
-        const outputDir = tmpDir.path;
-        const outputPath = outputDir + '/' + path.basename(file.path);
-
-        var jarPath = options.jar;
-        var xslPath = options.xsl;
-
-        if(!path.isAbsolute(jarPath)) {
-            jarPath = path.join(process.cwd(), '/', options.jar);
-        }
-
-        if(!path.isAbsolute(xslPath)) {
-             xslPath = path.join(process.cwd(), '/', options.xsl);
-        }
-
-        logger.info('Output Directory ', outputPath);
-
-        const saxonOptions = {
-            execOptions: options.execOptions,
-            params: options.params,
-            abortOnError: options.abortOnError,
-            basePath,
-            outputPath,
-            debugMode: options.debugMode,
-            jarPath: jarPath,
-            xslPath: xslPath
-        };
-
-        logger.info('Saxon Options', saxonOptions);
-
-        saxon(filePath, saxonOptions, function(saxonErr) {
-            if (saxonErr) {
-                var error = new PluginError(PLUGIN_NAME, saxonErr);
-                logger.error('Error with the Saxon process', saxonErr);
-                self.emit('error', error);
-                if (options.abortOnError === true) {
-                    //self.emit('end', error);
-                    process.exit(1);
-                }
-
-                return next();
-            }
-
-            globToVinyl(path.join(outputDir, '**/*.*'), function(err, files) {
-                if (err) {
-                    var error = new PluginError(PLUGIN_NAME, err);
-                    logger.error('Error from Vinyl Stream Glob, ', err);
-                    self.emit('error', error);
-                    if (options.abortOnError === true) {
-                        //self.emit('end', error);
-                        process.exit(1);
-                    }
-                    return next();
-                }
-
-                files.forEach(function(vFile) {
-                    self.push(vFile);
-                });
-
-                logger.info('Pushed output files to vinyl stream');
-                //files.forEach(function (file) {
-                //    logger.info(file.path);
-                //})
-
-                rimraf.sync(tmpDir.path);
-
-                logger.info('Deleted the tmp output Path', tmpDir.path);
-                return next();
-
-            });
-
-        });
+    if (!path.isAbsolute(jarPath)) {
+      jarPath = path.join(process.cwd(), '/', options.jar);
     }
 
-    return through2.obj(transform);
+    if (!path.isAbsolute(xslPath)) {
+      xslPath = path.join(process.cwd(), '/', options.xsl);
+    }
+
+    logger.info('Output Directory ', outputPath);
+
+    const saxonOptions = {
+      execOptions: options.execOptions,
+      params: options.params,
+      abortOnError: options.abortOnError,
+      basePath,
+      outputPath,
+      debugMode: options.debugMode,
+      jarPath: jarPath,
+      xslPath: xslPath
+    };
+
+    logger.info('Saxon Options', saxonOptions);
+
+    saxon(filePath, saxonOptions, function (saxonErr) {
+      if (saxonErr) {
+        var error = new PluginError(PLUGIN_NAME, saxonErr);
+        logger.error('Error with the Saxon process', saxonErr);
+        self.emit('error', error);
+        if (options.abortOnError === true) {
+          //self.emit('end', error);
+          process.exit(1);
+        }
+
+        return next();
+      }
+
+      globToVinyl(path.join(outputDir, '**/*.*'), function (err, files) {
+        if (err) {
+          var error = new PluginError(PLUGIN_NAME, err);
+          logger.error('Error from Vinyl Stream Glob, ', err);
+          self.emit('error', error);
+          if (options.abortOnError === true) {
+            //self.emit('end', error);
+            process.exit(1);
+          }
+          return next();
+        }
+
+        files.forEach(function (vFile) {
+          self.push(vFile);
+        });
+
+        logger.info('Pushed output files to vinyl stream');
+        //files.forEach(function (file) {
+        //    logger.info(file.path);
+        //})
+
+        rimrafSync(tmpDir.path);
+
+        logger.info('Deleted the tmp output Path', tmpDir.path);
+        return next();
+      });
+    });
+  }
+
+  return through2.obj(transform);
 }
 
-module.exports = transformer;
+export default transformer;

@@ -1,6 +1,6 @@
 'use strict';
-const gulp = require('gulp');
-const xslt = require('./../');
+import gulp from 'gulp';
+import xslt from '../index.js';
 
 const lib = 'lib-ref/saxon9he.jar';
 
@@ -40,7 +40,7 @@ const paths = {
 /**
  * Basic Example
  */
-function basic() {
+export function basic() {
   return gulp
     .src(paths.basic.src)
     .pipe(
@@ -61,7 +61,7 @@ function basic() {
 /**
  * Import and Params Example
  */
-function params() {
+export function params() {
   return gulp
     .src(paths.params.src, { buffer: false })
     .pipe(
@@ -86,7 +86,7 @@ function params() {
 /**
  * Import and Params Example
  */
-function dtd() {
+export function dtd() {
   return gulp
     .src(paths.dtd.src, { buffer: false })
     .pipe(
@@ -107,7 +107,7 @@ function dtd() {
 /**
  * User Requirement Example
  */
-function task() {
+export function task() {
   return gulp
     .src(paths.task.src)
     .pipe(
@@ -132,7 +132,7 @@ function task() {
 /**
  * Error Example
  */
-function error() {
+export function error() {
   return gulp
     .src(paths.error.src)
     .pipe(
@@ -154,7 +154,7 @@ function error() {
     .pipe(gulp.dest(paths.error.dest));
 }
 
-const watch = function () {
+export const watch = function () {
   gulp.watch(paths.basic.src, basic);
   gulp.watch(paths.params.src, params);
   gulp.watch(paths.dtd.src, dtd);
@@ -163,12 +163,4 @@ const watch = function () {
 
 const build = gulp.parallel(basic, params, dtd, task);
 
-exports.basic = basic;
-exports.params = params;
-exports.dtd = dtd;
-exports.task = task;
-exports.error = error;
-
-exports.watch = watch;
-exports.build = build;
-exports.default = build;
+export default build;

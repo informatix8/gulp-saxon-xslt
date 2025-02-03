@@ -1,5 +1,5 @@
 'use strict';
 
-const xsltTransformer = require('./src');
+import xsltTransformer from './src/index.js';
 
-module.exports = xsltTransformer;
+export default xsltTransformer;
