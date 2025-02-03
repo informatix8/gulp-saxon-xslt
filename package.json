@@ -1,6 +1,6 @@
 {
   "name": "@informatix8/gulp-saxon-xslt",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Gulp plugin for XML Transformation via Saxon",
   "main": "index.js",
   "scripts": {
@@ -20,17 +20,17 @@
   "license": "ISC",
   "dependencies": {
     "lodash.merge": "^4.6.2",
-    "plugin-error": "^1.0.1",
-    "rimraf": "^3.0.0",
+    "plugin-error": "^2.0.1",
+    "rimraf": "^5.0.0",
     "temporary": "^1.0.1",
-    "through2": "^3.0.1",
-    "vinyl-fs": "^3.0.3"
+    "through2": "^4.0.0",
+    "vinyl-fs": "^4.0.0"
   },
   "devDependencies": {
-    "gulp": "~3.9.1",
-    "jshint": "^2.10.3"
+    "gulp": "^5.0.0",
+    "jshint": "^2.13.6"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=18.20.0"
   }
 }
