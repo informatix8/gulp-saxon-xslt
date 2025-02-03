@@ -19,33 +19,37 @@ npm install @informatix8/gulp-saxon-xslt --save-dev
 ```
 
 ## Example
+
 ```javascript
 const gulp = require('gulp');
 const xslt = require('@informatix8/gulp-saxon-xslt');
 
-gulp.task('xslt', function () {
-    return gulp.src([
-        '*.xml'
-    ])
-        .pipe(xslt({
-            jar: 'saxon9he.jar',
-            xsl: 'stylesheet.xsl',
-            params: {
-                param1: 'foo',
-                param2: 'bar',
-            },
-            debugMode: false,
-            abortOnError: true
-        }, { buffer: false }))
-        .on('end', function handleEnd () {
-            console.log('XSLT Ended');
-        })
-        .on('error', function handleError (err) {
-            console.log('Caught Error');
-            console.error(err);
-        })
-        .pipe(gulp.dest('dist/'));
-});
+function xslt() {
+  return gulp
+    .src('*.xml', { buffer: false })
+    .pipe(
+      xslt({
+        jar: 'saxon9he.jar',
+        xsl: 'stylesheet.xsl',
+        params: {
+          param1: 'foo',
+          param2: 'bar'
+        },
+        debugMode: false,
+        abortOnError: true
+      })
+    )
+    .on('end', function handleEnd() {
+      console.log('XSLT Ended');
+    })
+    .on('error', function handleError(err) {
+      console.log('Caught Error');
+      console.error(err);
+    })
+    .pipe(gulp.dest('dist/'));
+}
+
+exports.xslt = xslt;
 ```
 
 ## Release
