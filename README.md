@@ -1,6 +1,9 @@
 # Gulp Saxon XSLT
 
-Bring your own Saxon library to transform XML with XSL 2 or 3
+Bring your own Saxon library to transform XML with XSL 2 or 3.
+
+> <span style="color:red;text-transform:uppercase;">! Important</span>  
+> This module only supports ESM.
 
 ## Features
 
@@ -21,10 +24,10 @@ npm install @informatix8/gulp-saxon-xslt --save-dev
 ## Example
 
 ```javascript
-const gulp = require('gulp');
-const xslt = require('@informatix8/gulp-saxon-xslt');
+import gulp from 'gulp';
+import xslt from '@informatix8/gulp-saxon-xslt';
 
-function xslt() {
+export function xslt() {
   return gulp
     .src('*.xml', { buffer: false })
     .pipe(
@@ -48,8 +51,6 @@ function xslt() {
     })
     .pipe(gulp.dest('dist/'));
 }
-
-exports.xslt = xslt;
 ```
 
 ## Release
