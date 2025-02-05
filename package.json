@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:informatix8/gulp-saxon-xslt.git"
+    "url": "git+ssh://git@github.com/informatix8/gulp-saxon-xslt.git"
   },
   "author": "Mjr",
   "contributors": [
